@@ -10,24 +10,20 @@ jobs:
     needs: test
     runs-on: ubuntu-latest
     steps:
+      - name: install nodejs
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
       - name: get terraform
-        uses: hashicorp/setup-terraform@v3.0.0
+        uses: hashicorp/setup-terraform@v3
         with:
           terraform_version: "3.69.0"
-  tfinit:
-    needs: terraform
-    runs-on: ubuntu-latest
-    steps:
       - name: init terraform
         id: init
         run: terraform init
       - name: fmt terraform
         id: fmt
         run: terraform fmt
-  tfplan:
-    needs: tfinit
-    runs-on: ubuntu-latest
-    steps:
       - name: tf plan
         id: plan
         run: terraform plan
