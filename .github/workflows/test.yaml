@@ -16,8 +16,6 @@ jobs:
           node-version: 18
       - name: get terraform
         uses: hashicorp/setup-terraform@v3
-        with:
-          terraform_version: "3.69.0"
       - name: init terraform
         id: init
         run: terraform init
